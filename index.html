@@ -1497,19 +1497,7 @@ mobileLinks.forEach(link => {
   });
 });
 
-/* ── PARALLAX HERO ── */
-const heroParallax = document.getElementById('heroParallax');
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const scrolled = window.scrollY;
-      heroParallax.style.transform = `translateY(${scrolled * 0.45}px)`;
-      ticking = false;
-    });
-    ticking = true;
-  }
-}, { passive: true });
+/* ── PARALLAX HERO — desativado ── */
 
 /* ── PARALLAX SUAVE NAS SEÇÕES ── */
 const parallaxElements = document.querySelectorAll('.about-deco');
