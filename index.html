@@ -456,13 +456,15 @@ nav.scrolled {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
+  grid-auto-rows: 320px;
+  gap: 6px;
   padding: 0 max(24px, calc((100% - var(--container)) / 2));
 }
 .gallery-item {
   position: relative;
   overflow: hidden;
   background: var(--surface-high);
+  border-radius: 4px;
 }
 .gallery-item.tall { grid-row: span 2; }
 .gallery-item img,
@@ -1139,47 +1141,32 @@ footer {
   <div class="gallery-grid">
     <!-- Célula 1 -->
     <div class="gallery-item reveal">
-      <div class="gallery-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e9c176" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Realismo</p>
-      </div>
+      <img src="images/realismo.png" alt="Realismo" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
       <div class="gallery-reveal"><p>Realismo</p></div>
     </div>
 
     <!-- Célula 2 — TALL -->
     <div class="gallery-item tall reveal delay-1">
-      <div class="gallery-placeholder" style="min-height:100%">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e9c176" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Blackwork</p>
-      </div>
+      <img src="images/portfolio-blackwork.png" alt="Blackwork" style="width:100%;height:100%;object-fit:cover;display:block;">
       <div class="gallery-reveal"><p>Blackwork<br>Conceitual</p></div>
     </div>
 
     <!-- Célula 3 -->
     <div class="gallery-item reveal delay-2">
-      <div class="gallery-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e9c176" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Fine Line</p>
-      </div>
+      <img src="images/fine-line.png" alt="Fine Line" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
       <div class="gallery-reveal"><p>Fine Line</p></div>
     </div>
 
     <!-- Célula 4 -->
     <div class="gallery-item reveal delay-3">
-      <div class="gallery-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e9c176" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Geométrico</p>
-      </div>
-      <div class="gallery-reveal"><p>Geométrico</p></div>
+      <img src="images/artistico.png" alt="Artístico" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:saturate(0.82) contrast(0.92);">
+      <div class="gallery-reveal"><p>Artístico</p></div>
     </div>
 
     <!-- Célula 5 -->
     <div class="gallery-item reveal delay-4">
-      <div class="gallery-placeholder">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e9c176" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Micro Realismo</p>
-      </div>
-      <div class="gallery-reveal"><p>Micro Realismo</p></div>
+      <img src="images/realismo-colorido.png" alt="Realismo Colorido" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+      <div class="gallery-reveal"><p>Realismo Colorido</p></div>
     </div>
   </div>
 </section>
@@ -1220,7 +1207,7 @@ footer {
       <div class="estilo-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="#e9c176" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/><line x1="2" y1="15.5" x2="22" y2="15.5"/></svg>
       </div>
-      <div class="estilo-title">Geométrico</div>
+      <div class="estilo-title">Artístico</div>
       <div class="estilo-desc">Simetria perfeita e precisão matemática encontrando a forma humana orgânica. Arte que desafia a percepção.</div>
     </div>
 
