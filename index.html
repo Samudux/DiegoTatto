@@ -834,7 +834,7 @@ nav.scrolled {
   line-height: 0.92;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  margin-bottom: 32px;
+  margin-bottom: 44px;
   position: relative; z-index: 1;
   max-width: 900px;
   margin-left: auto;
@@ -849,7 +849,7 @@ nav.scrolled {
   font-size: clamp(16px, 2vw, 20px);
   color: var(--text-muted);
   max-width: 560px;
-  margin: 0 auto 56px;
+  margin: 0 auto 72px;
   line-height: 1.7;
   position: relative; z-index: 1;
 }
@@ -873,6 +873,20 @@ nav.scrolled {
   box-shadow: 0 20px 60px rgba(233,193,118,0.3);
 }
 .btn-cta-big:active { transform: scale(0.98); }
+.cta-trust {
+  margin-top: 28px;
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  position: relative;
+  z-index: 1;
+  opacity: 0.65;
+}
+.cta-trust span { display: flex; align-items: center; gap: 7px; }
 
 /* ═══════════════════════════════════════════
    FOOTER
@@ -1374,17 +1388,20 @@ footer {
 <section id="cta-final">
   <div class="cta-glow"></div>
   <h2 class="cta-title reveal">
-    Sua tela<br>
-    <em>está esperando.</em>
+    Sua próxima tatuagem<br>
+    <em>começa agora.</em>
   </h2>
   <p class="cta-sub reveal delay-2">
-    Agendamentos abertos. Garante já a sua consulta e
-    comece a transformação que vai durar para sempre.
+    Cada tatuagem é pensada do zero para você. Do conceito ao resultado final, tudo é feito para refletir sua identidade.
   </p>
   <a href="https://wa.me/5511978233574?text=Olá%20Diego!%20Quero%20agendar%20uma%20sessão." class="btn-cta-big reveal delay-3">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.187-2.59-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793 0-.853.448-1.271.607-1.445.159-.175.347-.218.463-.218.116 0 .231.001.332.005.109.004.258-.041.405.314.159.386.543 1.321.589 1.417.047.097.078.209.014.332-.064.128-.096.209-.191.319-.096.11-.202.245-.288.33-.097.097-.198.202-.085.39.113.189.503.827 1.08 1.34.743.663 1.37.868 1.564.965.194.097.306.081.42-.049.113-.129.484-.564.613-.757.129-.194.258-.161.435-.097.177.065 1.129.532 1.323.629.194.097.323.145.37.226.048.081.048.469-.096.874z"/></svg>
-    Iniciar Meu Projeto
+    Quero Minha Tatuagem
   </a>
+  <div class="cta-trust reveal delay-4">
+    <span>✔ Sem compromisso inicial</span>
+    <span>✔ Atendimento direto com o tatuador</span>
+  </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
