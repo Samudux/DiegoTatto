@@ -1064,6 +1064,113 @@ footer {
   .gallery-grid { grid-template-columns: 1fr; }
   .about-stats { gap: 28px; flex-wrap: wrap; }
 }
+
+/* ═══ MODAL PÓS-CUIDADO ═══ */
+.modal-guia {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-guia.open { display: flex; }
+
+.modal-guia-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.modal-guia-panel {
+  position: relative;
+  background: #111;
+  border: 1px solid var(--outline);
+  border-radius: 4px;
+  width: 100%; max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.modal-guia-close {
+  position: absolute; top: 20px; right: 20px;
+  background: none; border: none;
+  color: var(--text-muted); font-size: 18px;
+  cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-guia-close:hover { color: var(--accent); }
+
+.modal-guia-header {
+  padding: 48px 40px 32px;
+  border-bottom: 1px solid var(--outline);
+}
+.modal-guia-eyebrow {
+  display: block;
+  font-size: 11px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 10px;
+}
+.modal-guia-header h2 {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700; color: var(--text);
+  margin-bottom: 10px;
+}
+.modal-guia-header p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+}
+.modal-guia-body { padding: 32px 40px; display: flex; flex-direction: column; gap: 32px; }
+
+.guia-fase { display: flex; flex-direction: column; gap: 16px; }
+.guia-fase--alerta .guia-fase-header h3 { color: #e5a84a; }
+
+.guia-fase-header {
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.guia-fase-num {
+  min-width: 40px; height: 40px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.guia-fase-num--alerta { border-color: #e5a84a; color: #e5a84a; font-size: 18px; }
+.guia-fase-header h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.guia-fase-header span { font-size: 12px; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+
+.guia-lista { list-style: none; display: flex; flex-direction: column; gap: 10px; padding-left: 56px; }
+.guia-lista li { font-size: 14px; color: var(--text-muted); line-height: 1.5; display: flex; gap: 10px; align-items: flex-start; }
+.guia-ok { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.guia-no { color: #888; flex-shrink: 0; }
+
+.modal-guia-footer {
+  padding: 28px 40px 36px;
+  border-top: 1px solid var(--outline);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap;
+}
+.modal-guia-footer p { font-size: 14px; color: var(--text-muted); }
+.modal-guia-wa {
+  background: var(--accent); color: #1a0e00;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 12px 24px; border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.modal-guia-wa:hover { opacity: 0.85; }
+
+@media (max-width: 600px) {
+  .modal-guia-header, .modal-guia-body, .modal-guia-footer { padding-left: 24px; padding-right: 24px; }
+  .guia-lista { padding-left: 0; }
+}
 </style>
 </head>
 
@@ -1428,13 +1535,188 @@ footer {
   <div class="footer-wrap">
     <div class="footer-logo">Diego<span> Tattoo</span> Studio</div>
     <div class="footer-links">
-      <a href="#">Guia de Pós-cuidado</a>
-      <a href="#">Política de Cancelamento</a>
+      <a href="#" id="btnGuia">Guia de Pós-cuidado</a>
+      <a href="#" id="btnCancelamento">Política de Cancelamento</a>
       <a href="https://www.instagram.com/estudio_diego_tattoo" target="_blank">Instagram</a>
     </div>
     <div class="footer-copy">© 2024 Estúdio Diego Tattoo · Arte com propósito</div>
   </div>
 </footer>
+
+<!-- ═══ MODAL CANCELAMENTO ═══ -->
+<div id="modalCancelamento" class="modal-guia" role="dialog" aria-modal="true" aria-labelledby="modalCancelTitulo">
+  <div class="modal-guia-backdrop"></div>
+  <div class="modal-guia-panel">
+    <button class="modal-guia-close" aria-label="Fechar">&#x2715;</button>
+    <div class="modal-guia-header">
+      <span class="modal-guia-eyebrow">Estúdio Diego Tattoo</span>
+      <h2 id="modalCancelTitulo">Política de Cancelamento</h2>
+      <p>Valorizamos o seu tempo e o de Diego. Leia com atenção antes de agendar sua sessão.</p>
+    </div>
+    <div class="modal-guia-body">
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">01</span>
+          <div>
+            <h3>Agendamento e Sinal</h3>
+            <span>Confirmação da sessão</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Todo agendamento é confirmado mediante pagamento de sinal de 30% do valor da sessão</li>
+          <li><span class="guia-ok">✓</span> O sinal é descontado do valor total no dia da sessão</li>
+          <li><span class="guia-ok">✓</span> A confirmação é enviada via WhatsApp com data, horário e orientações</li>
+        </ul>
+      </div>
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">02</span>
+          <div>
+            <h3>Cancelamento com Antecedência</h3>
+            <span>Quando e como cancelar</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Cancelamentos com mais de 72 horas de antecedência: sinal 100% reembolsado ou transferido para nova data</li>
+          <li><span class="guia-ok">✓</span> Cancelamentos entre 48 h e 72 h: sinal transferido para reagendamento, sem reembolso em dinheiro</li>
+          <li><span class="guia-no">✗</span> Cancelamentos com menos de 48 horas: sinal não reembolsado</li>
+          <li><span class="guia-no">✗</span> No-show (ausência sem aviso): sinal perdido e nova sessão exige novo sinal integral</li>
+        </ul>
+      </div>
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">03</span>
+          <div>
+            <h3>Reagendamento</h3>
+            <span>Mudança de data ou horário</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Reagendamentos são permitidos uma vez sem custo adicional, desde que solicitados com mais de 48 horas</li>
+          <li><span class="guia-ok">✓</span> O sinal é mantido e abatido na nova sessão normalmente</li>
+          <li><span class="guia-no">✗</span> Segundo reagendamento ou reagendamentos com menos de 48 horas exigem novo sinal</li>
+        </ul>
+      </div>
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">04</span>
+          <div>
+            <h3>Casos Excepcionais</h3>
+            <span>Emergências e imprevistos</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Situações de saúde, urgência familiar ou casos fortuitos são avaliados individualmente</li>
+          <li><span class="guia-ok">✓</span> Apresentação de atestado médico garante reagendamento sem perda do sinal</li>
+          <li><span class="guia-ok">✓</span> Entre em contato o quanto antes — a comunicação antecipada sempre facilita uma solução</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="modal-guia-footer">
+      <p>Dúvidas sobre seu agendamento?</p>
+      <a class="modal-guia-wa" href="https://wa.me/5511978233574?text=Olá%20Diego!%20Tenho%20uma%20dúvida%20sobre%20cancelamento." target="_blank">
+        Chamar no WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL PÓS-CUIDADO ═══ -->
+<div id="modalGuia" class="modal-guia" role="dialog" aria-modal="true" aria-labelledby="modalGuiaTitulo">
+  <div class="modal-guia-backdrop"></div>
+  <div class="modal-guia-panel">
+    <button class="modal-guia-close" aria-label="Fechar">&#x2715;</button>
+    <div class="modal-guia-header">
+      <span class="modal-guia-eyebrow">Estúdio Diego Tattoo</span>
+      <h2 id="modalGuiaTitulo">Guia de Pós-Cuidado</h2>
+      <p>Seguir estas orientações garante a cicatrização ideal e a longevidade das cores e traços da sua tatuagem.</p>
+    </div>
+    <div class="modal-guia-body">
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">01</span>
+          <div>
+            <h3>Primeiras 24 horas</h3>
+            <span>O início da cicatrização</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Mantenha o curativo aplicado pelo tatuador por 2 a 4 horas</li>
+          <li><span class="guia-ok">✓</span> Lave suavemente com água morna e sabão neutro, sem esfregar</li>
+          <li><span class="guia-ok">✓</span> Seque com papel toalha limpo em movimentos de pressão (não esfregar)</li>
+          <li><span class="guia-ok">✓</span> Aplique uma camada fina de pomada cicatrizante indicada pelo tatuador</li>
+          <li><span class="guia-no">✗</span> Não molhe por tempo prolongado (banho de banheira, piscina, mar)</li>
+          <li><span class="guia-no">✗</span> Não exponha ao sol diretamente</li>
+        </ul>
+      </div>
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">02</span>
+          <div>
+            <h3>Dias 2 a 7</h3>
+            <span>Fase ativa de cicatrização</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Lave a tatuagem 2× ao dia com água morna e sabão neutro</li>
+          <li><span class="guia-ok">✓</span> Hidrate com pomada cicatrizante ou hidratante sem perfume 3× ao dia</li>
+          <li><span class="guia-ok">✓</span> Use roupas folgadas e de algodão sobre a área tatuada</li>
+          <li><span class="guia-ok">✓</span> Durma em lençóis limpos — troque diariamente se possível</li>
+          <li><span class="guia-no">✗</span> Não arranhe nem descasque a pele, mesmo que coce intensamente</li>
+          <li><span class="guia-no">✗</span> Evite academia, suor excessivo e atividades de contato</li>
+          <li><span class="guia-no">✗</span> Não aplique álcool, antissépticos ou produtos com perfume</li>
+        </ul>
+      </div>
+
+      <div class="guia-fase">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num">03</span>
+          <div>
+            <h3>Semanas 2 a 4</h3>
+            <span>Maturação da pele</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-ok">✓</span> Continue hidratando diariamente com loção sem perfume</li>
+          <li><span class="guia-ok">✓</span> Aplique protetor solar FPS 50+ sempre que expor ao sol</li>
+          <li><span class="guia-ok">✓</span> A descamação é normal — deixe cair naturalmente</li>
+          <li><span class="guia-no">✗</span> Evite exposição solar prolongada sem proteção durante todo o primeiro mês</li>
+          <li><span class="guia-no">✗</span> Não mergulhe em piscinas com cloro ou no mar até cicatrizar completamente</li>
+        </ul>
+      </div>
+
+      <div class="guia-fase guia-fase--alerta">
+        <div class="guia-fase-header">
+          <span class="guia-fase-num guia-fase-num--alerta">!</span>
+          <div>
+            <h3>Sinais de alerta</h3>
+            <span>Procure atendimento médico se notar</span>
+          </div>
+        </div>
+        <ul class="guia-lista">
+          <li><span class="guia-no">✗</span> Vermelhidão intensa, inchaço ou calor excessivo após o 3º dia</li>
+          <li><span class="guia-no">✗</span> Secreção com odor ou pus na área tatuada</li>
+          <li><span class="guia-no">✗</span> Febre ou mal-estar geral após a sessão</li>
+          <li><span class="guia-no">✗</span> Reação alérgica com manchas ou urticária</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="modal-guia-footer">
+      <p>Dúvidas? Fale diretamente com Diego.</p>
+      <a class="modal-guia-wa" href="https://wa.me/5511978233574?text=Olá%20Diego!%20Tenho%20uma%20dúvida%20sobre%20o%20pós-cuidado." target="_blank">
+        Chamar no WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ WHATSAPP FLUTUANTE ═══ -->
 <a class="wa-btn" href="https://wa.me/5511978233574?text=Olá%20Diego!%20Quero%20agendar%20uma%20sessão." aria-label="WhatsApp">
@@ -1518,6 +1800,39 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
 revealEls.forEach(el => observer.observe(el));
+
+/* ── MODAL PÓS-CUIDADO ── */
+const modalGuia   = document.getElementById('modalGuia');
+const btnGuia     = document.getElementById('btnGuia');
+const btnFechar   = modalGuia.querySelector('.modal-guia-close');
+const backdrop    = modalGuia.querySelector('.modal-guia-backdrop');
+
+function abrirModal() {
+  modalGuia.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function fecharModal() {
+  modalGuia.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+btnGuia.addEventListener('click', e => { e.preventDefault(); abrirModal(); });
+btnFechar.addEventListener('click', fecharModal);
+backdrop.addEventListener('click', fecharModal);
+
+const modalCancel     = document.getElementById('modalCancelamento');
+const btnCancelamento = document.getElementById('btnCancelamento');
+const btnFecharCancel = modalCancel.querySelector('.modal-guia-close');
+const backdropCancel  = modalCancel.querySelector('.modal-guia-backdrop');
+
+function abrirCancel() { modalCancel.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function fecharCancel() { modalCancel.classList.remove('open'); document.body.style.overflow = ''; }
+
+btnCancelamento.addEventListener('click', e => { e.preventDefault(); abrirCancel(); });
+btnFecharCancel.addEventListener('click', fecharCancel);
+backdropCancel.addEventListener('click', fecharCancel);
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { fecharModal(); fecharCancel(); } });
 
 /* ── CONTADOR ANIMADO ── */
 function animateCounter(el, target, suffix = '') {
