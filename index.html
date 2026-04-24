@@ -13,7 +13,7 @@
    SISTEMA DE DESIGN — THE NOIR GALLERY
 ═══════════════════════════════════════════ */
 :root {
-  --bg:              #0c0c0c;
+  --bg:              #000000;
   --surface:         #131313;
   --surface-low:     #1c1b1b;
   --surface-mid:     #201f1f;
@@ -232,9 +232,17 @@ nav.scrolled {
   display: flex; align-items: center;
   overflow: hidden;
 }
+#hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, var(--surface-low));
+  z-index: 5;
+  pointer-events: none;
+}
 .hero-parallax {
   position: absolute; inset: -15%;
-  background: url('images/herotatto.png') 70% center / auto 72% no-repeat;
+  background: url('images/herotatto.png') 70% 70% / auto 72% no-repeat;
   will-change: transform;
 }
 .hero-overlay {
@@ -1027,6 +1035,10 @@ footer {
   .loc-map { height: 300px; }
 }
 @media (max-width: 768px) {
+  .hero-parallax {
+    background-position: 60% top;
+    background-size: auto 90%;
+  }
   nav { padding: 0 24px; }
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
@@ -1063,7 +1075,6 @@ footer {
     <li><a href="#bioseg">Biossegurança</a></li>
     <li><a href="#localizacao">Localização</a></li>
   </ul>
-  <a class="nav-cta" href="https://wa.me/5511978233574?text=Olá%20Diego!%20Quero%20agendar%20uma%20sessão.">Agendar Sessão</a>
   <button class="nav-burger" id="burgerBtn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
