@@ -240,6 +240,14 @@ nav.scrolled {
   z-index: 5;
   pointer-events: none;
 }
+#hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, #000000 20%, transparent);
+  z-index: 20;
+  pointer-events: none;
+}
 .hero-parallax {
   position: absolute; inset: -15%;
   background: url('images/herotatto.png') 70% 70% / auto 72% no-repeat;
